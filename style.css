@@ -1,0 +1,46 @@
+html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:Tahoma,"Segoe UI",sans-serif;color:#c9d6cf}
+canvas{display:block}
+.overlay{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:rgba(3,5,6,.88);z-index:5}
+.overlay.hidden{display:none}
+h1{font-weight:300;letter-spacing:.35em;margin:0;font-size:2.4rem}
+#menuText{direction:rtl;margin:0;color:#7d8f86;max-width:34ch;text-align:center;line-height:1.8}
+button{background:none;border:1px solid #5d6f66;color:#c9d6cf;padding:10px 38px;font-size:1.1rem;cursor:pointer}
+button:hover,button:focus-visible{border-color:#c9d6cf;outline:none}
+a{color:#6f8078;text-decoration:none}
+#hint{position:fixed;bottom:12%;width:100%;text-align:center;direction:rtl;font-size:1.05rem;color:#dfe9e3;text-shadow:0 0 8px #000;z-index:2;opacity:0;transition:opacity .4s;pointer-events:none}
+#hint.show{opacity:1}
+#cross{position:fixed;left:50%;top:50%;width:4px;height:4px;margin:-2px;border-radius:50%;background:#c9d6cf88;z-index:2}
+#vig{position:fixed;inset:0;pointer-events:none;z-index:3;opacity:0;transition:opacity .2s;background:radial-gradient(ellipse at center,transparent 45%,#600 100%)}
+
+#batteryHud{position:fixed;left:18px;top:18px;z-index:3;display:flex;align-items:center;gap:8px;direction:rtl;font-size:12px;color:#d5dfd8;text-shadow:0 1px 5px #000;pointer-events:none;transition:opacity .2s}
+#batteryTrack{width:100px;height:8px;border:1px solid #7e9284;background:#111a15;box-sizing:border-box}
+#batteryFill{height:100%;width:100%;background:#a8c9a9;transition:width .2s,background .2s}
+#batteryHud small{border:1px solid #7e9284;padding:1px 4px;font-size:10px}
+
+#storyHud{position:fixed;right:18px;top:18px;z-index:3;direction:rtl;font-size:12px;color:#d5dfd8;text-shadow:0 1px 5px #000;pointer-events:none;border:1px solid #59675e;padding:6px 9px;background:#07100b99}
+
+#healthHud{position:fixed;left:18px;top:48px;z-index:3;display:flex;gap:8px;align-items:center;direction:rtl;color:#e7b9b9;font-size:14px;text-shadow:0 1px 5px #000;pointer-events:none}#healthHud small{font-size:11px;color:#d5dfd8}
+#controls{direction:rtl;color:#7d8f86;font-size:.85rem;text-align:center;max-width:80vw;line-height:1.8}
+
+#hideOverlay{position:fixed;inset:0;z-index:8;background:#000;display:none;align-items:center;justify-content:center;flex-direction:column;gap:18px;color:#8a7777;direction:rtl;font-size:1rem;letter-spacing:.04em;pointer-events:none}#hideOverlay.show{display:flex}#hideOverlay span{font-size:1.2rem;color:#5e4d4d}#hideOverlay small{font-size:.85rem;color:#433838}
+#hideOverlay #hideSense{display:block;max-width:85vw;text-align:center;font-size:1rem;line-height:1.7;color:#8b9690;letter-spacing:0;transition:color .2s,transform .2s}
+#hideOverlay #hideSense.danger{color:#ff4b3e;transform:scale(1.06);text-shadow:0 0 18px #a10d0d}
+
+/* Chapter map HUD */
+#mapHud{position:fixed;right:16px;top:64px;z-index:4;width:190px;padding:7px 8px 5px;background:rgba(2,5,6,.76);border:1px solid #52625a;box-shadow:0 0 18px #0008;direction:rtl;color:#d5dfd8;pointer-events:none;backdrop-filter:blur(2px)}
+#mapHud .mapTitle{font-size:11px;display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;color:#aab8af}
+#miniMap{display:block;width:100%;height:auto;image-rendering:pixelated;opacity:.94}
+#mapHud small{display:block;font-size:9px;color:#aab8af;text-align:center;margin-top:3px}
+#mapHud small b{color:#e94b4b;font-weight:normal;margin-right:8px}
+@media(max-width:600px){#mapHud{right:8px;top:58px;width:135px;padding:5px}#mapHud .mapTitle{font-size:10px}#mapHud small{font-size:8px}}
+
+
+/* Patch 12: heavier cinematic horror treatment */
+body::after{
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(ellipse at center, transparent 18%, rgba(0,0,0,.28) 58%, rgba(0,0,0,.82) 100%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.012) 0 1px, transparent 1px 3px);
+  mix-blend-mode:multiply;
+}
+#vig{background:radial-gradient(ellipse at center,transparent 20%,rgba(30,0,0,.48) 66%,rgba(75,0,5,.94) 100%)}

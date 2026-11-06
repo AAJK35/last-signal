@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<title>THE LAST SIGNAL</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#07090b">
+<link rel="icon" href="icons/icon-192.png">
+</head>
+<body>
+<div id="hint"></div>
+<div id="cross"></div>
+<div id="healthHud"><span id="healthText">♥ ♥ ♥</span><small>سلامتی</small></div>
+<div id="storyHud">نامه‌ها: 0/5</div>
+<div id="batteryHud" aria-label="باتری چراغ‌قوه"><span>باتری</span><div id="batteryTrack"><div id="batteryFill"></div></div><span id="batteryText">100%</span><small>F</small></div>
+<div id="vig"></div>
+<div id="menu" class="overlay">
+  <h1>THE LAST SIGNAL</h1>
+  <p id="menuText">سال ۱۹۹۸؛ ایستگاه تحقیقاتی نورس پس از ارسال سیگنال ناشناس خاموش شد. تو برای یافتن خواهر گمشده‌ات، مهندس رها، وارد مجموعه می‌شوی. برق را وصل کن، رمز خروج را پیدا کن و پنج نامه را جمع کن تا حقیقت و پایان واقعی آشکار شود.</p>
+<p id="controls">WASD حرکت · Shift دویدن · E تعامل/مخفی شدن · F چراغ‌قوه · ماوس نگاه</p>
+  <button id="btnPlay">شروع</button>
+  <button id="btnInstall" hidden>نصب بازی روی دستگاه</button>
+  <a id="btnHome" href="/" hidden>منوی اصلی</a>
+</div>
+<script>
+let deferredInstallPrompt; const installBtn=document.getElementById("btnInstall");
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredInstallPrompt=e;installBtn.hidden=false;});
+installBtn?.addEventListener("click",async()=>{if(!deferredInstallPrompt)return;deferredInstallPrompt.prompt();await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;installBtn.hidden=true;});
+window.addEventListener("appinstalled",()=>{installBtn.hidden=true;});
+if("serviceWorker" in navigator && location.protocol.startsWith("http")) window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(console.warn));
+</script>
+<script type="module" src="game.js"></script>
+</body>
+</html>
